@@ -2,8 +2,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
 from pprint import pprint
-from flask import Flask
-import os
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -136,15 +134,3 @@ def main():
 
 print("Welcome to Game Stock's Data Automation")
 main()
-
-app = Flask(__name__)
-
-@app.route("/")
-def index():
-    return "Hello, world!"
-
-if __name__ == "__main__":
-    app.run(
-        host=os.environ.get("IP", "0.0.0.0"),
-        port=int(os.environ.get("PORT", "5000")),
-        debug=True)

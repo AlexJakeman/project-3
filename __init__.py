@@ -13,9 +13,14 @@ def about():
     return render_template("about.html")
 
 
-@app.route("/contact")
-def contact():
-    return render_template("contact.html")
+@app.route("/help")
+def help():
+    return render_template("help.html")
+
+
+@app.route("/games")
+def games():
+    return render_template("games.html")
 
 if __name__ == "__main__":
     app.run(
