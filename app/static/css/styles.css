@@ -125,9 +125,8 @@ h1, .h1 {
 }
 
 .scrollable-container {
-  max-height: 400px; /* Adjust the height according to your needs */
+  max-height: 500px;
   overflow: auto;
-  background-color: ;
 }
 
 .scrollable-container table {
