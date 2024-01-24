@@ -59,7 +59,7 @@ def word_list():
 
     sorted_word_records = sorted(word_records, key=itemgetter('Date'), reverse=True)
 
-    newest_word_records = sorted_word_records[:10]
+    newest_word_records = sorted_word_records[:1000]
 
     words = []
     for idx, word in enumerate(newest_word_records, start=2):
