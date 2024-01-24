@@ -124,8 +124,16 @@ h1, .h1 {
   font-size: calc(1.375rem + 1.5vw);
 }
 
+.table-title {
+  text-align: center;
+  background-color: #212529;
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+}
+
 .scrollable-container {
-  max-height: 500px;
+  max-height: 450px;
   overflow: auto;
 }
 
@@ -142,6 +150,11 @@ h1, .h1 {
   padding: 15px;
   text-align: left;
   border-bottom: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  /* border-radius: 10px; */
+  /* border: 3px; */
+  border-color: #ddd;
 }
 
 .scrollable-container th:first-child {
@@ -153,14 +166,55 @@ h1, .h1 {
   color: #212529;
 }
 
-.scrollable-container tr:hover {
+#submit-table-2 {
+  border-radius: 10px;
+  font-family: "Montserrat";
+  padding: 10px;
+  background-color: #212529;
+  color: #ffffff;
+  text-align: center;
+  margin: auto;
+}
+
+#submit-table-2:enabled {
   background-color: #fed136;
   color: #212529;
 }
 
-/* .scrollable-container tr:nth-child(even) {
-  background-color: #f2f2f2;
-} */
+#submit-table-2:enabled:hover {
+  background-color: #eec11f;
+  color: #fff;
+}
+
+.button-alex {
+  /* width: 30%; */
+  /* margin: auto; */
+  padding-top: 15px;
+}
+
+.button-alex {
+  float:calc(50%);
+}
+
+#search-form {
+  text-align: center;
+  margin: auto;
+}
+
+.search-container {
+  margin-bottom: 20px;
+}
+
+.search-input {
+  padding: 10px;
+  font-size: 16px;
+}
+
+.search-button {
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
 
 .scrollable-container tr:nth-child(6n+7) {
   background-color: #a60d0d;
@@ -169,6 +223,47 @@ h1, .h1 {
 .scrollable-container tr:hover {
   background-color: #fed136;
   color: #212529;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+.form-label {
+  color: #fff;
+}
+
+.myTable2 {
+  margin: auto;
+  width: 60%;
+  font-family: "Montserrat";
+}
+
+.myTable2 label {
+  font-weight: 200;
+  text-transform: uppercase !important;
+}
+
+.myTable2 td:first-child {
+  width: 15%;
+}
+
+#id-formfield-1, #id-formfield-2, #id-formfield-3, #id-formfield-4 {
+  background-color: purple;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 15px;
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 15px;  
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #fed136;
 }
 
 @media (min-width: 1200px) {
@@ -703,6 +798,19 @@ progress {
 @media (min-width: 992px) {
   .container-lg, .container-md, .container-sm, .container {
     max-width: 960px;
+  }
+  #form-field-1, #form-field-2, #form-field-3, #form-field-4 {
+    width: 100%;
+    margin: auto;
+    border-radius: 10px;
+  }
+  .scrollable-container {
+    width: 60%;
+    margin: auto;
+  }
+  .scrollable-container table {
+    width: 100%;
+    margin: auto;
   }
 }
 @media (min-width: 1200px) {
@@ -2010,7 +2118,7 @@ progress {
   }
 }
 .form-label {
-  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 .col-form-label {
@@ -5033,6 +5141,9 @@ textarea.form-control-lg {
     margin-left: calc(-1 * var(--bs-list-group-border-width));
     border-left-width: var(--bs-list-group-border-width);
   }
+  #form-field-1, #form-field-2, #form-field-3, #form-field-4 {
+    width: 60%;
+  }
 }
 @media (min-width: 1400px) {
   .list-group-horizontal-xxl {
@@ -5056,6 +5167,9 @@ textarea.form-control-lg {
   .list-group-horizontal-xxl > .list-group-item + .list-group-item.active {
     margin-left: calc(-1 * var(--bs-list-group-border-width));
     border-left-width: var(--bs-list-group-border-width);
+  }
+  #form-field-1, #form-field-2, #form-field-3, #form-field-4 {
+    width: 60%;
   }
 }
 .list-group-flush {
@@ -10886,7 +11000,7 @@ p {
 }
 
 .page-section {
-  padding: 6rem 0;
+  padding: 3rem 0;
 }
 .page-section h2.section-heading, .page-section .section-heading.h2 {
   font-size: 2.5rem;
@@ -10897,13 +11011,14 @@ p {
   font-size: 1rem;
   font-weight: 400;
   font-style: italic;
+  color: #fff !important;
   font-family: "Roboto Slab", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 }
 
 @media (min-width: 768px) {
   section {
-    padding: 9rem 0;
+    padding: 4rem 0;
   }
 }
 .btn-xl {

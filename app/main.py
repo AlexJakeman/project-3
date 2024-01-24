@@ -1,8 +1,10 @@
 # python code goes here
 import gspread
 from google.oauth2.service_account import Credentials
-from flask import Flask, render_template
+from flask import Flask, redirect, render_template, request, url_for
 from pprint import pprint
+from operator import itemgetter
+from datetime import datetime
 # from gspread import GSPREAD_CLIENT
 import os
 
@@ -15,7 +17,7 @@ SCOPE = [
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
-SHEET = GSPREAD_CLIENT.open('game_reviews')
+SHEET = GSPREAD_CLIENT.open('gamer_lingo')
 
 app = Flask(__name__)
 
@@ -25,17 +27,18 @@ sh = gc.open_by_key('1W8zqyGt7SDpNYsbf_4ikPRKzVppZRxwFX49FG836AlA')
 
 user_sheet = SHEET.worksheet("users")
 review_sheet = SHEET.worksheet("reviews")
+word_sheet = SHEET.worksheet("lingo")
 
 
-class Review:
-    def __init__(self, ReviewId, Username, Game, Upvotes, Rating, Summary, Date, row_idx):
-        self.ReviewId = ReviewId
-        self.Username = Username
-        self.Game = Game
-        self.Upvotes = Upvotes
-        self.Rating = Rating
-        self.Summary = Summary
+class Words:
+    def __init__(self, Word, Context, Meaning, Added_by, Test, Date, Id, row_idx):
+        self.Word = Word
+        self.Context = Context
+        self.Meaning = Meaning
+        self.Added_by = Added_by
+        self.Test = Test
         self.Date = Date
+        self.Id = Id
         self.row_idx = row_idx
         
 class User:
@@ -47,21 +50,74 @@ class User:
         self.Joined = Joined
         self.Password = Password
         self.row_idx = row_idx
-        
 
 @app.route('/')
-def review_list():
-    review_records = review_sheet.get_all_records()
-    reviews = []
-    for idx, review in enumerate(review_records, start=2):
-        review = Review(**review, row_idx=idx)
-        reviews.append(review)
-        
-    n_game_reviews = sum(1 for review in reviews if not review.Summary)
-        
-    return render_template("base.html", reviews=reviews, n_game_review=n_game_reviews)
+def word_list():
+    word_records = word_sheet.get_all_records()
 
-# @app.route('/')    
+    for record in word_records:
+        record['Date'] = datetime.strptime(record['Date'], '%d/%m/%Y %H:%M:%S')
+
+    sorted_word_records = sorted(word_records, key=itemgetter('Date'), reverse=True)
+
+    newest_word_records = sorted_word_records[:10]
+
+    words = []
+    for idx, word in enumerate(newest_word_records, start=2):
+        word['Date'] = word['Date'].strftime('%d/%m/%Y %H:%M:%S')
+        
+        word = Words(**word, row_idx=idx)
+        words.append(word)
+
+    n_words_added = sum(1 for word in word_records if not word['Test'])
+
+    return render_template("base.html", words=words, n_words_added=n_words_added)
+
+@app.route('/', methods=['POST'])
+def add_term():
+    max_id = 0
+    word_records = word_sheet.get_all_records()
+    for record in word_records:
+        record_id = int(record['Id'])
+        if record_id > max_id:
+            max_id = record_id
+
+    new_id = max_id + 1
+
+    today_date = datetime.now().strftime('%d/%m/%Y %H:%M:%S')
+
+    name = request.form['name']
+    term = request.form['term']
+    context = request.form['context']
+    meaning = request.form['meaning']
+
+    new_term = [term, context, meaning, name, today_date, new_id]
+
+    word_sheet.append_row(new_term)
+
+    return redirect('/')
+    
+@app.route('/delete/<int:id>', methods=['POST'])
+def delete_term(id):
+    word_records = word_sheet.get_all_records()
+
+    record_to_delete = next((record for record in word_records if record['Id'] == id), None)
+
+    if record_to_delete:
+        row_id = word_records.index(record_to_delete)
+
+        try:
+            word_sheet.delete_row(row_id + 2)
+            print("Deletion successful")
+        except Exception as e:
+            print(f"Error deleting row: {e}")
+
+    else:
+        print(f"No record found with Id {id}")
+
+    return redirect('/')
+    
+# @app.route('/users')
 # def user_list():
 #     user_records = user_sheet.get_all_records()
 #     users = []
@@ -73,8 +129,18 @@ def review_list():
         
 #     return render_template("base.html", users=users, n_users_w_review=n_users_w_review)
 
+# @app.route('/filter_game', methods=['GET'])
+# def filter_game():
+#     game_to_filter = request.args.get('game_name')  # Get the game name from the URL parameter
+#     reviews = []
 
+#     if not game_to_filter:
+#         return "Please provide a game name to filter."
 
+#     filtered_reviews = [review for review in reviews if review.Game == game_to_filter]
+#     n_filtered_reviews = sum(1 for review in filtered_reviews if review.Summary)
+
+#     return render_template("filtered_reviews.html", reviews=filtered_reviews, n_game_review=n_filtered_reviews)
 
 
 if __name__ == "__main__":
