@@ -125,16 +125,25 @@ h1, .h1 {
 }
 
 .table-title {
+  margin: auto;
+  text-align: center;
+  width: 60%;
   text-align: center;
   background-color: #212529;
   color: #fff;
-  border-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   padding: 10px;
+  /* margin-bottom: 10px; */
 }
 
 .scrollable-container {
-  max-height: 450px;
+  max-height: 750px;
   overflow: auto;
+  border-top: 5px solid grey;
+  border-bottom: 5px solid grey;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .scrollable-container table {
@@ -143,7 +152,8 @@ h1, .h1 {
   margin: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  border-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .scrollable-container th, .scrollable-container td {
@@ -253,7 +263,7 @@ h1, .h1 {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #fed136;
   border-radius: 15px;
 }
  
@@ -263,7 +273,7 @@ h1, .h1 {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #fed136;
+  background: #212529;
 }
 
 @media (min-width: 1200px) {
