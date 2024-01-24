@@ -1,6 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
-from flask import Flask, redirect, render_template, request, url_for
+from flask import Flask, flash, redirect, render_template, request, url_for
 from pprint import pprint
 from operator import itemgetter
 from datetime import datetime
@@ -19,6 +19,8 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('gamer_lingo')
 
 app = Flask(__name__)
+
+app.secret_key = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789!' 
 
 gc = gspread.service_account(filename='creds.json')
 
@@ -92,7 +94,11 @@ def add_term():
 
     new_term = [term, context, meaning, name, today_date, new_id]
 
-    word_sheet.append_row(new_term)
+    try:
+        word_sheet.append_row(new_term)
+        flash("New term added successfully!", 'success')  # Flash a success message
+    except Exception as e:
+        flash(f"Error adding new term: {e}", 'danger')  # Flash an error message
 
     return redirect('/')
     
@@ -107,12 +113,11 @@ def delete_term(id):
 
         try:
             word_sheet.delete_row(row_id + 2)
-            print("Deletion successful")
+            flash("Deletion successful", 'success')  # Flash a success message
         except Exception as e:
-            print(f"Error deleting row: {e}")
-
+            flash(f"Error deleting row: {e}", 'danger')  # Flash an error message
     else:
-        print(f"No record found with Id {id}")
+        flash(f"No record found with Id {id}", 'danger')  # Flash an error message
 
     return redirect('/')
     
