@@ -138,7 +138,10 @@
                 <thead>
                 <tr>
                     <th>
-                        Term: {{ word.Word }}
+                        Term:
+                    </th>
+                    <th>
+                        {{ word.Word }}
                     </th>
                 </tr>
                 </thead>
@@ -148,29 +151,49 @@
                     {% set text_color = loop.cycle('#fff', '#212529') %}
                         <tr style="background-color: {{ loop_color }}; color: {{ text_color }}">
                             <td>
-                                Added By: {{ word.Added_by }}
+                                Added By:
+                            </td>
+                            <td>
+                                {{ word.Added_by }}
                             </td>
                         </tr>
                         <tr style="background-color: {{ loop_color }}; color: {{ text_color }}">
                             <td>
-                                Context: {{ word.Context }}
+                                Context:
+                            </td>
+                            <td>
+                                {{ word.Context }}
                             </td>
                         </tr>
                         <tr style="background-color: {{ loop_color }}; color: {{ text_color }}">
                             <td>
-                                Meaning: {{ word.Meaning }}
+                                Meaning:
+                            </td>
+                            <td>
+                                {{ word.Meaning }}
                             </td>
                         </tr>
                         <tr style="background-color: {{ loop_color }}; color: {{ text_color }}">
                             <td>
-                                Date/Time Added: {{ word.Date }} 
+                                Date/Time Added:
+                            </td>
+                            <td>
+                                {{ word.Date }} 
                             </td>
                         </tr>
                         <tr style="background-color: {{ loop_color }}; color: {{ text_color }}" data-row-id="{{ word.Id }}">
                             <td>
-                                <button type="button" class="btn btn-primary delete-btn" data-bs-toggle="modal" data-bs-target="#topgenreModal1">
-                                    Edit/Delete
-                                </button>
+                                Click Save to save changes.
+                                <form method="POST" action="{{ url_for('add_term') }}" style="display: inline;">
+                                    <input type="hidden" name="id" value="{{ word.Id }}">
+                                    <button type="submit">Save</button>
+                            </td>
+                            <td>
+                                Want to delete this term?
+                                <form method="POST" action="{{ url_for('delete_term', id=word.Id) }}" style="display: inline;">
+                                    <input type="hidden" name="id" value="{{ word.Id }}">
+                                    <button type="submit">Delete</button>
+                                </form>
                             </td>
                         </tr>
                     </tr>
