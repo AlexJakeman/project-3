@@ -102,7 +102,7 @@ def add_term():
 
     return redirect('/')
     
-@app.route('/delete/<int:id>', methods=['POST'])
+@app.route('/delete_term/<int:id>', methods=['POST'])
 def delete_term(id):
     word_records = word_sheet.get_all_records()
 
