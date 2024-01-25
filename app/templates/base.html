@@ -183,17 +183,12 @@
                         </tr>
                         <tr style="background-color: {{ loop_color }}; color: {{ text_color }}" data-row-id="{{ word.Id }}">
                             <td>
-                                Click Save to save changes.
-                                <form method="POST" action="{{ url_for('add_term') }}" style="display: inline;">
-                                    <input type="hidden" name="id" value="{{ word.Id }}">
-                                    <button type="submit">Save</button>
+                                <button type="button" class="btn btn-primary delete-btn" data-bs-toggle="modal" data-bs-target="#topgenreModal1">
+                                    Delete
+                                </button>
                             </td>
                             <td>
-                                Want to delete this term?
-                                <form method="POST" action="{{ url_for('delete_term', id=word.Id) }}" style="display: inline;">
-                                    <input type="hidden" name="id" value="{{ word.Id }}">
-                                    <button type="submit">Delete</button>
-                                </form>
+                                
                             </td>
                         </tr>
                     </tr>
@@ -210,15 +205,19 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-8">
                             <div class="modal-body">
-                                Want to delete this term?
-                                <form id="deleteForm" method="POST" action="/delete_term/" style="display: inline;">
-                                    <input type="hidden" name="id" value="" id="selectedRowId">
-                                    <button type="submit" class="btn btn-danger delete-modal-btn" data-bs-dismiss="modal">Delete</button>
-                                </form>
-                                <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                    <i class="fas fa-xmark me-1"></i>
-                                    Close Project
-                                </button>
+                                <h3>
+                                    Are you sure you want to delete this term?
+                                </h3>
+                                <div>
+                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button" style="bottom: 0; display: inline;">
+                                        <i class="fas fa-xmark me-1"></i>
+                                        Cancel
+                                    </button>
+                                    <form id="deleteForm" method="POST" action="/delete_term/" style="bottom: 0; display: inline;">
+                                        <input type="hidden" name="id" value="" id="selectedRowId">
+                                        <button type="submit" class="btn btn-danger delete-modal-btn" data-bs-dismiss="modal">Delete</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
