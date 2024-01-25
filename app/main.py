@@ -103,27 +103,38 @@ def add_term():
     return redirect('/')
     
 @app.route('/update_term/<int:id>', methods=['POST'])
-def update_term(id):
-    word_records = word_sheet.get_all_records()
-    record_to_update = next((record for record in word_records if record['Id'] == id), None)
+def update_term(id): 
+    print("Success! DELETED!")
     
+    max_id = 0
+    word_records = word_sheet.get_all_records()
+    
+    record_to_delete = next((record for record in word_records if record['Id'] == id), None)
+    
+    for record in word_records:
+        record_id = int(record['Id'])
+        if record_id > max_id:
+            max_id = record_id
+
+    new_id = max_id + 1
+
     today_date = datetime.now().strftime('%d/%m/%Y %H:%M:%S')
 
+    name = request.form['name']
     term = request.form['term']
     context = request.form['context']
     meaning = request.form['meaning']
-    added = request.form['added']
-    updated_term = [term, context, meaning, added, today_date]
 
-    if record_to_update:
-        row_id = word_records.index(record_to_update) #don't change
-        try:
-            word_sheet.update(row_id + 2)
-            flash("Updated term successfully!", 'success')
-        except Exception as e:
-            flash(f"Error updating term: {e}", 'danger')
-    else:
-        flash(f"No record found with Id {id}", 'danger')
+    new_term = [term, context, meaning, name, today_date, new_id]
+    
+    row_id = word_records.index(record_to_delete)
+    
+    try:
+        word_sheet.delete_row(row_id + 2)
+        word_sheet.append_row(new_term)
+        flash("Updated term successfully!", 'success')
+    except Exception as e:
+        flash(f"Error updating term: {e}", 'danger')
 
     return redirect('/')
     

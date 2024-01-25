@@ -130,6 +130,11 @@ h1, .h1 {
   border-radius: 10px;
 }
 
+.form-label-dark {
+  margin-top: 10px;
+  color: #212529;
+}
+
 .table-title {
   margin: auto;
   text-align: center;
