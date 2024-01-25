@@ -26,14 +26,14 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="#team">Team's Terms</a></li>
                     <li class="nav-item"><a class="nav-link" href="#yourterms">Your Terms</a></li>
                     <li class="nav-item"><a class="nav-link" href="#add_term">Add a Term</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#team">Team's Terms</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-    <!-- Masthead-->
+
     <header class="masthead">
         <div class="container">
             <div class="masthead-subheading">Welcome To Gamer Jargon!</div>
@@ -64,7 +64,7 @@
                 <button class="btn btn-primary" type="button" onclick="resetTable()">Reset</button>
             </div>
             <h4 class="table-title-subheader">
-                You can update any term by selecting the field to the right of a pencil icon.
+                You can update any term by selecting the field to the left of a pencil icon.
             </h4>
         </div>
         <div class="scrollable-container">
@@ -75,8 +75,8 @@
                     <th>
                         Term:
                     </th>
-                    <th contenteditable="true" id="form-field-5" name="term">
-                         {{ word.Word }} <a style="float:right;"><i class="fa fa-pencil"></i></a>
+                    <th contenteditable="true" id="form-field-5" name="update-term">
+                         {{ word.Word }} <a style="float:right;" contenteditable="false"><i class="fa fa-pencil"></i></a>
                     </th>
                 </tr>
                 </thead>
@@ -88,24 +88,24 @@
                             <td>
                                 Added By:
                             </td>
-                            <td contenteditable="true" id="form-field-6" name="added">
-                                </i> {{ word.Added_by }} <a style="float:right;"><i class="fa fa-pencil"></i></a>
+                            <td contenteditable="true" id="form-field-6" name="update-added">
+                                </i> {{ word.Added_by }} <a style="float:right;" contenteditable="false"><i class="fa fa-pencil"></i></a>
                             </td>
                         </tr>
                         <tr style="background-color: {{ loop_color }}; color: {{ text_color }}">
                             <td>
                                 Context:
                             </td>
-                            <td contenteditable="true" id="form-field-7" name="context">
-                                {{ word.Context }} <a style="float:right;"><i class="fa fa-pencil"></i></a> 
+                            <td contenteditable="true" id="form-field-7" name="update-context">
+                                {{ word.Context }} <a style="float:right;"><i class="fa fa-pencil" contenteditable="false"></i></a> 
                             </td>
                         </tr>
                         <tr style="background-color: {{ loop_color }}; color: {{ text_color }}">
                             <td>
                                 Meaning:
                             </td>
-                            <td contenteditable="true" id="form-field-8" name="meaning">
-                                {{ word.Meaning }} <a style="float:right;"><i class="fa fa-pencil"></i></a>
+                            <td contenteditable="true" id="form-field-8" name="update-meaning">
+                                {{ word.Meaning }} <a style="float:right;"><i class="fa fa-pencil" contenteditable="false"></i></a>
                             </td>
                         </tr>
                         <tr style="background-color: {{ loop_color }}; color: {{ text_color }}">
