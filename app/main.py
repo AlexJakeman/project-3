@@ -96,9 +96,34 @@ def add_term():
 
     try:
         word_sheet.append_row(new_term)
-        flash("New term added successfully!", 'success')  # Flash a success message
+        flash("New term added successfully!", 'success')
     except Exception as e:
-        flash(f"Error adding new term: {e}", 'danger')  # Flash an error message
+        flash(f"Error adding new term: {e}", 'danger')
+
+    return redirect('/')
+    
+@app.route('/update_term/<int:id>', methods=['POST'])
+def update_term(id):
+    word_records = word_sheet.get_all_records()
+    record_to_update = next((record for record in word_records if record['Id'] == id), None)
+    
+    today_date = datetime.now().strftime('%d/%m/%Y %H:%M:%S')
+
+    term = request.form['term']
+    context = request.form['context']
+    meaning = request.form['meaning']
+    added = request.form['added']
+    updated_term = [term, context, meaning, added, today_date]
+
+    if record_to_update:
+        row_id = word_records.index(record_to_update) #don't change
+        try:
+            word_sheet.update(row_id + 2)
+            flash("Updated term successfully!", 'success')
+        except Exception as e:
+            flash(f"Error updating term: {e}", 'danger')
+    else:
+        flash(f"No record found with Id {id}", 'danger')
 
     return redirect('/')
     
@@ -113,11 +138,11 @@ def delete_term(id):
 
         try:
             word_sheet.delete_row(row_id + 2)
-            flash("Deletion successful", 'success')  # Flash a success message
+            flash("Deletion successful", 'success')
         except Exception as e:
-            flash(f"Error deleting row: {e}", 'danger')  # Flash an error message
+            flash(f"Error deleting row: {e}", 'danger')
     else:
-        flash(f"No record found with Id {id}", 'danger')  # Flash an error message
+        flash(f"No record found with Id {id}", 'danger')
 
     return redirect('/')
     
