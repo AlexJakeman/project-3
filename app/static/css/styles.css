@@ -305,6 +305,45 @@ h1, .h1 {
   background: #212529;
 }
 
+@media (max-width: 768px) {
+  .table-title {
+    margin: auto;
+    text-align: center;
+    width: 95%;
+    text-align: center;
+    background-color: #212529;
+    color: #fff;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 10px;
+    margin-top: 20px;
+  }
+  #myInput {
+    width: 90%;
+  }
+  .search-button-bottom {
+    margin-top: 10px;
+  }
+  #yourterms {
+    margin-bottom: 10px;
+  }
+  .scrollable-container {
+    width: 95%;
+    margin: auto;
+  }
+  #myTable, .myTable2 {
+    width: 100%;
+    margin: auto;
+  }
+  #form-field-1, #form-field-2, #form-field-3, #form-field-4 {
+    margin: auto;
+    width: 100%;
+    border-radius: 8px;
+  }
+}
+
+
+
 @media (min-width: 1200px) {
   h1, .h1 {
     font-size: 2.5rem;
@@ -830,6 +869,11 @@ progress {
   .container-lg, .container-md, .container-sm, .container {
     max-width: 960px;
   }
+
+  .jargon-logo {
+    border-radius: 10px;
+  }
+  
 
   .search-table {
     padding: 5px

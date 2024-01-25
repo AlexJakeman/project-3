@@ -4,14 +4,13 @@ from flask import Flask, flash, redirect, render_template, request, url_for
 from pprint import pprint
 from operator import itemgetter
 from datetime import datetime
-# from gspread import GSPREAD_CLIENT
 import os
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
     "https://www.googleapis.com/auth/drive"
-    ]
+]
 
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
@@ -26,8 +25,6 @@ gc = gspread.service_account(filename='creds.json')
 
 sh = gc.open_by_key('1W8zqyGt7SDpNYsbf_4ikPRKzVppZRxwFX49FG836AlA')
 
-user_sheet = SHEET.worksheet("users")
-review_sheet = SHEET.worksheet("reviews")
 word_sheet = SHEET.worksheet("lingo")
 
 
@@ -40,16 +37,6 @@ class Words:
         self.Test = Test
         self.Date = Date
         self.Id = Id
-        self.row_idx = row_idx
-        
-class User:
-    def __init__(self, UserId, Username, Name, Email, Joined, Password, row_idx):
-        self.ReviewId = UserId
-        self.Username = Username
-        self.Name = Name
-        self.Email = Email
-        self.Joined = Joined
-        self.Password = Password
         self.row_idx = row_idx
 
 @app.route('/')
@@ -72,7 +59,7 @@ def word_list():
 
     n_words_added = sum(1 for word in word_records if not word['Test'])
 
-    return render_template("base.html", words=words, n_words_added=n_words_added)
+    return render_template( "base.html", words=words, n_words_added=n_words_added )
 
 @app.route('/', methods=['POST'])
 def add_term():
@@ -104,8 +91,6 @@ def add_term():
     
 @app.route('/update_term/<int:id>', methods=['POST'])
 def update_term(id): 
-    print("Success! DELETED!")
-    
     max_id = 0
     word_records = word_sheet.get_all_records()
     
