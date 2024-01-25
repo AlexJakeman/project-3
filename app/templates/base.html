@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
     <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet"  type='text/css'>
-    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" >
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -19,7 +19,8 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand" href="#"><img class="jargon-logo" src="{{ url_for('static', filename='assets/img/logos/gamer-jargon-logo.png') }}" alt="..." /></a>
+           <!-- <a class="navbar-brand" href="#"><img class="jargon-logo" src="{{ url_for('static', filename='assets/img/logos/gamer-jargon-logo.png') }}" alt="..." /></a> -->
+           <a class="navbar-brand masthead-subheading" href="#">Gamer Jargon</a> 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
                 <i class="fa fa-bars ms-1"></i>
@@ -153,7 +154,7 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <input id="added-field-{{ word.Id }}" type="text" name="name" value="{{ word.Added_by }}">
+                                                    <input class="add-term-inputs" id="added-field-{{ word.Id }}" type="text" name="name" value="{{ word.Added_by }}">
                                                 </td>
                                             </tr>
                                             <tr>
@@ -163,7 +164,7 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <input id="term-field-{{ word.Id }}" type="text" name="term" value="{{ word.Word }}">
+                                                    <input class="add-term-inputs" id="term-field-{{ word.Id }}" type="text" name="term" value="{{ word.Word }}">
                                                 </td>
                                             </tr>
                                             <tr>
@@ -173,7 +174,7 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <input id="context-field-{{ word.Id }}" type="text" name="context" value="{{ word.Context}}">
+                                                    <input class="add-term-inputs" id="context-field-{{ word.Id }}" type="text" name="context" value="{{ word.Context}}">
                                                 </td>
                                             </tr>
                                             <tr>
@@ -183,7 +184,7 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <input id="meaning-field-{{ word.Id }}" type="text" name="meaning" value="{{ word.Meaning}}">
+                                                    <input class="add-term-inputs" id="meaning-field-{{ word.Id }}" type="text" name="meaning" value="{{ word.Meaning}}">
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -273,9 +274,9 @@
     <!-- Team-->
     <section class="page-section bg-light" id="team">
         <div class="container">
-            <div class="text-center">
-                <h2 class="table-title-header">Our Amazing Team's Terms</h2>
-                <h3 class="table-title-subheader">The team picked their favourites</h3>
+            <div class="text-center" id="table-title-header-bg">
+                <h2 class="table-title-header">The Team's Terms</h2>
+                <h3 class="table-title-subheader" id="table-title-subehader">The team picked their favourites</h3>
             </div>
             <div class="row">
                 <div class="col-lg-4">

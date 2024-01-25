@@ -134,7 +134,7 @@ def delete_term(id):
 
         try:
             word_sheet.delete_row(row_id + 2)
-            flash("Deletion successful", 'success')
+            flash("Deleted term successfully!", 'success')
         except Exception as e:
             flash(f"Error deleting row: {e}", 'danger')
     else:
