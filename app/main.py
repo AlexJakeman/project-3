@@ -157,32 +157,6 @@ def delete_term(id):
 
     return redirect('/')
     
-# @app.route('/users')
-# def user_list():
-#     user_records = user_sheet.get_all_records()
-#     users = []
-#     for idx, user in enumerate(user_records, start=2):
-#         user = User(**user, row_idx=idx)
-#         users.append(user)
-        
-#     n_users_w_review = sum(1 for user in users if user.Joined)
-        
-#     return render_template("base.html", users=users, n_users_w_review=n_users_w_review)
-
-# @app.route('/filter_game', methods=['GET'])
-# def filter_game():
-#     game_to_filter = request.args.get('game_name')  # Get the game name from the URL parameter
-#     reviews = []
-
-#     if not game_to_filter:
-#         return "Please provide a game name to filter."
-
-#     filtered_reviews = [review for review in reviews if review.Game == game_to_filter]
-#     n_filtered_reviews = sum(1 for review in filtered_reviews if review.Summary)
-
-#     return render_template("filtered_reviews.html", reviews=filtered_reviews, n_game_review=n_filtered_reviews)
-
-
 if __name__ == "__main__":
     app.run(
         host=os.environ.get("IP", "0.0.0.0"),
