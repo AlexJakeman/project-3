@@ -130,6 +130,12 @@ h1, .h1 {
   border-radius: 10px;
 }
 
+.feedback {
+  color: #fed136;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
 .form-label-dark {
   margin-top: 10px;
   color: #212529;
@@ -692,7 +698,6 @@ button,
   padding: 10px 15px;
   border: none;
   border-radius: 5px;
-  cursor: pointer;
 }
 
 button:hover,
