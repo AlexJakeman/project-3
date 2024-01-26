@@ -14,6 +14,5 @@ function isValidInput(input, maxLength) {
 }
 
 function submitSearch() {
-    // Add your logic for handling the search here
     console.log('Search submitted!');
 }

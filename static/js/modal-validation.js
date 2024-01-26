@@ -1,7 +1,7 @@
 var submitButtons = document.querySelectorAll('[id^="submit-table-"]');
 
 submitButtons.forEach(function (submitButton) {
-    var wordId = submitButton.id.split('-')[2]; // Extract wordId from the submit button's ID
+    var wordId = submitButton.id.split('-')[2];
 
     var inputs = document.querySelectorAll('[id^="added-field-' + wordId + '"], [id^="term-field-' + wordId + '"], [id^="context-field-' + wordId + '"], [id^="meaning-field-' + wordId + '"]');
 

@@ -8592,7 +8592,7 @@ textarea.form-control-lg {
 
 .rounded-circle {
   border-radius: 50% !important;
-  border-width: 2px solid;
+  border-width: 2px;
 }
 
 .rounded-pill {
