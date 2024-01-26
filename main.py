@@ -17,7 +17,7 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('gamer_lingo')
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='app/templates')
 
 app.secret_key = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789!' 
 
@@ -143,4 +143,4 @@ def delete_term(id):
     return redirect('/')
     
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
