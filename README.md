@@ -162,11 +162,17 @@ Steps:
 3. Expected Result: Appropriate success or error messages are displayed.
 - Actual Result: Confirmed, success or error messages appear as expected.
 
+![Image of the invalid input feedback from a Desktop user's perspective](/static/assets/img/readme/invalid-input-feedback.png)
+
 4. Expected Result: Submitting the form with invalid fields triggers appropriate error messages.
 - Actual Result: Confirmed, error messages appear for invalid fields.
 
+![Image of the disabled Add Term button from a Desktop user's perspective](/static/assets/img/readme/disabled-add-term-btn.png)
+
 5. Expected Result: The Add Term button should remain disabled until all fields are valid.
 - Actual Result: Confirmed, Add Term button is enabled only when all fields are filled with valid inputs.
+
+![Image of the enabled Add Term button from a Desktop user's perspective](/static/assets/img/readme/enabled-add-term-btn.png)
 
 6. Expected Result: The Live Term counter at the top of the page should increase by 1 upon successfully adding a term.
 - Actual Result: Confirmed, the Live Term counter does increase by 1.
@@ -362,7 +368,7 @@ Google Sheets was integral to host the data for the webapp.
 
 ### Heroku
 The project was deployed to Heroku following a guide from CodeInstitute.
-1. See link below:
+1. See CI link:
 https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FL101+2021_T1/courseware/4d995e6a4f384c3dafffdcbde3fd25ef/c39056b888d74e8ca8576c6890651626/
 
 ### Forking the GitHub Repository
