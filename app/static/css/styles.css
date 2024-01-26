@@ -135,6 +135,15 @@ h1, .h1 {
   color: #212529;
 }
 
+.myTable5 {
+  width: 100%;
+}
+
+.update-modal-buttons {
+  margin-top: 15px;
+  margin-right: 15px;
+}
+
 #table-title-header-bg {
   background-color: #212529;
   padding-bottom: 0px;
@@ -146,6 +155,15 @@ h1, .h1 {
   color: #fff;
   background-color: #212529;
   margin-bottom: 10px;
+}
+
+.team-feature-bottom {
+  color: #fff;
+  background-color: #212529;
+  border-radius: 10px;
+  margin-top: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .table-title {
@@ -329,7 +347,7 @@ h1, .h1 {
     margin-top: 20px;
   }
   #myInput {
-    width: 90%;
+    width: 60%;
   }
   .search-button-bottom {
     margin-top: 10px;
@@ -353,6 +371,9 @@ h1, .h1 {
   .modal-content {
     margin: auto;
   }
+  #footer-social-buttons {
+    display: none;
+  }
 }
 
 @media (max-width: 1199px) {
@@ -369,7 +390,7 @@ h1, .h1 {
     margin-top: 20px;
   }
   #myInput {
-    width: 90%;
+    width: 60%;
   }
   .search-button-bottom {
     margin-top: 10px;
@@ -404,6 +425,10 @@ h1, .h1 {
   margin: auto;
   width: 100%;
   border-radius: 8px;
+  }
+  .scrollable-container {
+    width: 60%;
+    margin: auto;
   }
 }
 
@@ -964,8 +989,12 @@ progress {
     margin: auto;
     border-radius: 10px;
   }
+
+}
+
+@media (min-width: 992px) {
   .scrollable-container {
-    width: 60%;
+    width: 95%;
     margin: auto;
   }
   .scrollable-container table {
@@ -976,6 +1005,14 @@ progress {
 @media (min-width: 1200px) {
   .container-xl, .container-lg, .container-md, .container-sm, .container {
     max-width: 1140px;
+  }
+  .scrollable-container {
+    width: 60%;
+    margin: auto;
+  }
+  .scrollable-container table {
+    width: 100%;
+    margin: auto;
   }
 }
 @media (min-width: 1400px) {
@@ -5271,7 +5308,7 @@ textarea.form-control-lg {
     border-left-width: var(--bs-list-group-border-width);
   }
   #form-field-1, #form-field-2, #form-field-3, #form-field-4 {
-    width: 60%;
+    width: 100%;
   }
 }
 @media (min-width: 1400px) {
@@ -5298,7 +5335,7 @@ textarea.form-control-lg {
     border-left-width: var(--bs-list-group-border-width);
   }
   #form-field-1, #form-field-2, #form-field-3, #form-field-4 {
-    width: 60%;
+    width: 100%;
   }
 }
 .list-group-flush {
@@ -8551,6 +8588,7 @@ textarea.form-control-lg {
 
 .rounded-circle {
   border-radius: 50% !important;
+  border-width: 2px solid;
 }
 
 .rounded-pill {
@@ -11532,7 +11570,7 @@ header.masthead .masthead-heading {
 .team-member img {
   width: 14rem;
   height: 14rem;
-  border: 0.5rem solid rgba(0, 0, 0, 0.1);
+  border: 0.5rem solid #212529;
 }
 .team-member h4, .team-member .h4 {
   margin-top: 1.5rem;
