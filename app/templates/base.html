@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet"  type='text/css'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <title>Gamer Jargon</title>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+        <div class="container">
+           <!-- <a class="navbar-brand" href="#"><img class="jargon-logo" src="{{ url_for('static', filename='assets/img/logos/gamer-jargon-logo.png') }}" alt="..." /></a> -->
+           <a class="navbar-brand masthead-subheading" href="#">Gamer Jargon</a> 
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fa fa-bars ms-1"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="#yourterms">Your Terms</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#add_term">Add a Term</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#team">Team's Terms</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="masthead">
+        <div class="container">
+            <div class="masthead-subheading">Welcome To Gamer Jargon!</div>
+            <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
+            <div class="masthead-subheading">You have added {{ n_words_added }} terms as a community!</div>
+        </div>
+    </header>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert" style="margin-bottom: 0; background-color: #fed136; color: #212529;">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+    {% endwith %}
+
+    <section class="bg-light" id="yourterms">
+        <div class="table-title">
+            <h1 class="table-title-header">
+                COMMUNITY ADDED TERMS
+            </h1>
+            <div class="search-table">
+                <input type="text" id="myInput" placeholder="Search for a term.." title="Type in a term">
+            </div>
+            <div>
+                <button class="btn btn-primary search-button-bottom" type="button" onclick="submitSearch()">Search</button>
+                <button class="btn btn-primary btn-danger search-button-bottom" type="button" onclick="resetTable()">Clear</button>
+            </div>
+            <h4 class="table-title-subheader">
+                You can update or delete any term by selecting Update / Delete.
+            </h4>
+        </div>
+        <div class="scrollable-container">
+            <table id="myTable">
+                {% for word in words %}
+                <thead>
+                <tr>
+                    <th>
+                        Term:
+                    </th>
+                    <th id="form-field-5">
+                         {{ word.Word }}
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    {% set loop_color = loop.cycle('#212529', '#fff') %}
+                    {% set text_color = loop.cycle('#fff', '#212529') %}
+                        <tr style="background-color: {{ loop_color }}; color: {{ text_color }}">
+                            <td>
+                                Added By:
+                            </td>
+                            <td id="form-field-6">
+                                </i> {{ word.Added_by }}
+                            </td>
+                        </tr>
+                        <tr style="background-color: {{ loop_color }}; color: {{ text_color }}">
+                            <td>
+                                Context:
+                            </td>
+                            <td id="form-field-7">
+                                {{ word.Context }}
+                            </td>
+                        </tr>
+                        <tr style="background-color: {{ loop_color }}; color: {{ text_color }}">
+                            <td>
+                                Meaning:
+                            </td>
+                            <td id="form-field-8">
+                                {{ word.Meaning }}
+                            </td>
+                        </tr>
+                        <tr style="background-color: {{ loop_color }}; color: {{ text_color }}">
+                            <td>
+                                Date/Time Added:
+                            </td>
+                            <td>
+                                {{ word.Date }} 
+                            </td>
+                        </tr>
+                        <tr style="background-color: {{ loop_color }}; color: {{ text_color }}" data-row-id="{{ word.Id }}">
+                            <td>
+                                <button type="button" class="btn btn-danger delete-btn" data-bs-toggle="modal" data-bs-target="#topgenreModal1">
+                                    Delete
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-primary update-btn" data-bs-toggle="modal" data-bs-target="#topgenreModal{{ word.Id }}">
+                                    Update
+                                </button>
+                            </td>
+                        </tr>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+        </div>
+    </section>
+
+    {% for word in words %}
+    <div class="portfolio-modal modal fade" id="topgenreModal{{ word.Id }}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="modal-body">
+                                <form id="contactForm-{{ word.Id }}" action="/update_term/{{ word.Id }}" method="post">
+                                    <table class="myTable5">
+                                        <tbody>
+                                            <h1> 
+                                                Update term
+                                            </h1>
+                                            <tr>
+                                                <td>
+                                                    <label class="form-label-dark" for="added-field-{{ word.Id }}">Your Name:</label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input class="add-term-inputs" autocomplete="added-{{ word.Id }}" id="added-field-{{ word.Id }}" type="text" name="name" value="{{ word.Added_by }}">
+                                                    <div id="feedback-added-{{ word.Id }}" class="feedback"></div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label class="form-label-dark" for="term-field-{{ word.Id }}">Term:</label> 
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input class="add-term-inputs" autocomplete="term-{{ word.Id }}" id="term-field-{{ word.Id }}" type="text" name="term" value="{{ word.Word }}">
+                                                    <div id="feedback-added-{{ word.Id }}" class="feedback"></div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label class="form-label-dark" for="context-field-{{ word.Id }}">Context</label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input class="add-term-inputs" autocomplete="context-{{ word.Id }}" id="context-field-{{ word.Id }}" type="text" name="context" value="{{ word.Context}}">
+                                                    <div id="feedback-added-{{ word.Id }}" class="feedback"></div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label class="form-label-dark" for="meaning-field-{{ word.Id }}">Meaning</label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input class="add-term-inputs" autocomplete="meaning-{{ word.Id }}" id="meaning-field-{{ word.Id }}" type="text" name="meaning" value="{{ word.Meaning}}">
+                                                    <div id="feedback-added-{{ word.Id }}" class="feedback"></div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="update-modal-buttons">
+                                        <button class="btn btn-primary btn-xl" data-bs-dismiss="modal" type="button" style="bottom: 0; display: inline;">
+                                            <i class="fas fa-xmark me-1"></i>
+                                            Cancel
+                                        </button>
+                                        <tr>
+                                            <td class="button-alex">
+                                                <input class="btn btn-primary btn-xl" id="submit-table-{{ word.Id }}" type="submit" name="add_term" value="Update" disabled="true">
+                                            </td>
+                                        </tr>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    <section class="page-section" id="reviews">
+        <div class="container" id="add_term">
+            <div class="text-center">
+                <h2 class="table-title-header-muted text-uppercase">Submit a word / phrase</h2>
+                <h3 class="section-subheading text-muted">Fill out the form below:</h3>
+            </div>
+            <form id="contactForm" action="/" method="post" autocomplete="on">
+                <table class="myTable2">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label class="form-label" for="form-field-1">Your Name</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="form-field-1" type="text" name="name" placeholder="Enter your Name" autocomplete="name">
+                                <div id="feedback-added-add-1" class="feedback"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="form-label" for="form-field-2">Term</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="form-field-2" type="text" name="term" placeholder="Enter your Term" autocomplete="term">
+                                <div id="feedback-added-add-2" class="feedback"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="form-label" for="form-field-3">Context</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="form-field-3" type="text" name="context" placeholder="Enter Context of your term here" autocomplete="context">
+                                <div id="feedback-added-add-3" class="feedback"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="form-label" for="form-field-4">Meaning</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="form-field-4" type="text" name="meaning" placeholder="Enter Meaning of your term here" autocomplete="meaning">
+                                <div id="feedback-added-add-4" class="feedback"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="button-alex">
+                                <input id="submit-table-2" type="submit" name="add_term" value="Add Term" disabled="true">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </section>
+
+    <section class="page-section bg-light" id="team">
+        <div class="container">
+            <div class="text-center" id="table-title-header-bg">
+                <h2 class="table-title-header">The Team's Terms</h2>
+                <h3 class="table-title-subheader" id="table-title-subehader">The team picked their favourites</h3>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="team-member">
+                        <img class="mx-auto rounded-circle" src="{{ url_for('static', filename='assets/img/team/1.jpg')}}" alt="..." />
+                        <h4>Alex Jakeman</h4>
+                        <p class="text-muted">CEO</p>
+                        <a class="btn btn-dark btn-social mx-2" href="https://www.x.com" aria-label="Parveen Anand Twitter Profile"><i class="fa fa-twitter"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="https://www.facebook.com"  aria-label="Parveen Anand Facebook Profile"><i class="fa fa-facebook-f"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="https://www.linkedin.com"  aria-label="Parveen Anand LinkedIn Profile"><i class="fa fa-linkedin"></i></a>
+                        <p class="text-muted">My favourite term: "Rage Quit"</p>
+                        <p class="text-muted">Context: The act of quitting a game in frustration or anger.</p>
+                        <p class="text-muted">Meaning: When someone can't handle the heat and dramatically exits a game, we say they 'rage quit.'</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="team-member">
+                        <img class="mx-auto rounded-circle" src="{{ url_for('static', filename='assets/img/team/2.jpg') }}" alt="..." />
+                        <h4>Fran Davis</h4>
+                        <p class="text-muted">Lead QA</p>
+                        <a class="btn btn-dark btn-social mx-2" href="https://www.x.com" aria-label="Diana Petersen Twitter Profile"><i class="fa fa-twitter"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="https://www.facebook.com"  aria-label="Diana Petersen Facebook Profile"><i class="fa fa-facebook-f"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="https://www.linkedin.com"  aria-label="Diana Petersen LinkedIn Profile"><i class="fa fa-linkedin"></i></a>
+                        <p class="text-muted">My favourite term: Nyan Cat Strategy</p>
+                        <p class="text-muted">Context: Implementing the 'Nyan Cat Strategy' involves distracting opponents with the catchy Nyan Cat tune playing in the background.</p>
+                        <p class="text-muted">Meaning: Distracting opponents by playing the Nyan Cat theme to disrupt focus and concentration.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="team-member">
+                        <img class="mx-auto rounded-circle" src="{{ url_for('static', filename='assets/img/team/3.jpg') }}" alt="..." />
+                        <h4>James Mayer</h4>
+                        <p class="text-muted">Lead Developer</p>
+                        <a class="btn btn-dark btn-social mx-2" href="https://www.x.com" aria-label="Larry Parker Twitter Profile"><i class="fa fa-twitter"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="https://www.facebook.com" aria-label="Larry Parker Facebook Profile"><i class="fa fa-facebook-f"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="https://www.linkedin.com" aria-label="Larry Parker LinkedIn Profile"><i class="fa fa-linkedin"></i></a>
+                        <p class="text-muted">My favourite term: "Leroy Jenkins</p>
+                        <p class="text-muted">Context: Whenever someone rushes into a situation without thinking, we say they pulled a 'Leroy Jenkins.'</p>
+                        <p class="text-muted">Meaning: Rushing into a situation recklessly and without a plan.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center"><p class="large team-feature-bottom">These are just a few of our personal favourites. Make sure you add yours above!</p></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="portfolio-modal modal fade" id="topgenreModal1" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="modal-body">
+                                <h3>
+                                    Are you sure you want to delete this term?
+                                </h3>
+                                <div>
+                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button" style="bottom: 0; display: inline;">
+                                        <i class="fas fa-xmark me-1"></i>
+                                        Cancel
+                                    </button>
+                                    <form id="deleteForm" method="POST" action="/delete_term/" style="bottom: 0; display: inline;">
+                                        <input type="hidden" name="id" value="" id="selectedRowId">
+                                        <button type="submit" class="btn btn-danger delete-modal-btn" data-bs-dismiss="modal">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="portfolio-modal modal fade" id="topgenreModal11" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="modal-body">
+                                <h2>
+                                    TERMS OF USE
+                                </h2>
+                                <h3>
+                                    Acceptance of Terms: 
+                                </h3>
+                                <h4>
+                                    You vaguely agree that you have read, understood, and might possibly agree to these terms, but let's be honest, who really reads this stuff?
+                                </h4>
+                                <h3>
+                                    User Conduct: 
+                                </h3>
+                                <h4>
+                                    Be nice and don't do anything sketchy. If you do, we might vaguely do something about it.
+                                </h4>
+                                <h3>
+                                    Content: 
+                                </h3>
+                                <h4>
+                                    You vaguely own what you post, but we can do vague things with it, like sharing, modifying, or deleting it.
+                                </h4>
+                                <h3>
+                                    Privacy: 
+                                </h3>
+                                <h4>
+                                    We care about your privacy, maybe. Check our vague privacy policy to see how much.
+                                </h4>
+                                <h3>
+                                    Termination: 
+                                </h3>
+                                <h4>
+                                    We can vaguely terminate your access for any reason, or no reason at all. It's not personal, just business.
+                                </h4>
+                                <h3>
+                                    Disclaimer: 
+                                </h3>
+                                <h4>
+                                    We're not responsible for anything. Use our site at your own vague risk.
+                                </h4>
+                                <h3>
+                                    Changes: 
+                                </h3>
+                                <h4>
+                                    We can change these terms at any time, for any vague reason. We might let you know, or we might not.
+                                </h4>
+                                <h3>
+                                    Governing Law: 
+                                </h3>
+                                <h4>
+                                    These terms are governed by the laws of a vague jurisdiction. If there's a dispute, we'll settle it vaguely.
+                                </h4>
+                                <div>
+                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button" style="bottom: 0; display: inline;">
+                                        <i class="fas fa-xmark me-1"></i>
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="portfolio-modal modal fade" id="topgenreModal12" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="modal-body">
+                                <h2>
+                                    PRIVACY POLICY
+                                </h2>
+                                <h3>
+                                    Information We Collect:
+                                </h3>
+                                <h4>
+                                    We may collect some information about you, like maybe your IP address or cookies. We're not exactly sure what we'll do with it, but rest assured, it's somewhat secure.
+                                </h4>
+                                <h3>
+                                    How We Use Your Information: 
+                                </h3>
+                                <h4>
+                                    We might use your information for purposes that are somewhat related to our website. It could involve providing services, maybe improving something, or perhaps just for the sake of having it.
+                                </h4>
+                                <h3>
+                                    Sharing Your Information:
+                                </h3>
+                                <h4>
+                                    We may share your information with third parties for reasons that are somewhat clear to us. It might involve partnerships, analytics, or other vague business-related stuff.
+                                </h4>
+                                <h3>
+                                    Cookies: 
+                                </h3>
+                                <h4>
+                                    We use cookies because, well, that's what websites do. They help us do things, but we won't delve into specifics because, frankly, it's somewhat technical.
+                                </h4>
+                                <h3>
+                                    Your Choices: 
+                                </h3>
+                                <h4>
+                                    You have some choices, probably. You can maybe opt-out of something, but we won't go into details here. Somewhere on the site, there might be an option for you to click.
+                                </h4>
+                                <h3>
+                                    Security: 
+                                </h3>
+                                <h4>
+                                    We'll do our best to keep your information somewhat safe. However, keep in mind that the internet is a bit like the wild west, and we can only do so much.
+                                </h4>
+                                <h3>
+                                    Changes to This Policy:
+                                </h3>
+                                <h4>
+                                    We reserve the right to change this policy whenever we feel like it. We may or may not inform you about it, so it's somewhat your responsibility to check once in a while.
+                                </h4>
+                                <div>
+                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button" style="bottom: 0; display: inline;">
+                                        <i class="fas fa-xmark me-1"></i>
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-4 text-lg-start">Copyright &copy; Your Website 2049</div>
+                <div class="col-lg-4 my-3 my-lg-0">
+                    <a link-dark text-decoration-none id="footer-social-buttons"> Follow us:</a>
+                    <a class="btn btn-dark btn-social mx-2" href="https://www.x.com" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+                    <a class="btn btn-dark btn-social mx-2" href="https://www.facebook.com" aria-label="Facebook"><i class="fa fa-facebook-f"></i></a>
+                    <a class="btn btn-dark btn-social mx-2" href="https://www.linkedin.com" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <a class="link-dark text-decoration-none me-3" href="#topgenreModal12" data-bs-toggle="modal" data-bs-target="#topgenreModal12">Privacy Policy</a>
+                    <a class="link-dark text-decoration-none" href="#topgenreModal11" data-bs-toggle="modal" data-bs-target="#topgenreModal11">Terms of Use</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/table-search.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/modal-validation.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/field-validation.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/deletion-logic.js') }}"></script>
+</body>
+</html>
