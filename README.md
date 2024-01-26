@@ -4,11 +4,11 @@
 
 [View the live project here.](https://gamer-jargon-48d1cee18389.herokuapp.com)
 
-## Expand Desktop Homepage
+## Desktop Homepage
 
 ![Image of the homepage from a Desktop user's perspective](/static/assets/img/readme/gamer-jargon-homepage-desktop.png)
 
-## Expand Mobile Homepage
+## Mobile Homepage
 
 ![Image of the homepage from a Mobile user's perspective](/static/assets/img/readme/gamer-jargon-homepage-mobile.png)
 
