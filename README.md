@@ -373,7 +373,10 @@ This theme assisted me with getting the UI for my page.
 ### Heroku
 The project was deployed to Heroku following a guide from CodeInstitute.
 1. See CI link:
-https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FL101+2021_T1/courseware/4d995e6a4f384c3dafffdcbde3fd25ef/c39056b888d74e8ca8576c6890651626/
+- https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FL101+2021_T1/courseware/4d995e6a4f384c3dafffdcbde3fd25ef/c39056b888d74e8ca8576c6890651626/
+
+2. Live project link here:
+- https://gamer-jargon-48d1cee18389.herokuapp.com
 
 ### Forking the GitHub Repository
 By forking the GitHub Repository we make a copy of the original repository on our GitHub account to view and/or make changes without affecting the original repository by using the following steps...
@@ -387,6 +390,9 @@ By forking the GitHub Repository we make a copy of the original repository on ou
 
 - All text-based content was written by the developer.
 - Custom code written by developer, influenced by YouTube (Mentioned in external sources article)
+- Hero image - (https://www.wallpaperflare.com/firewatch-dark-night-minimalism-videogame-landscape-wallpaper-ytgnt/download)
+- Bootstrap - Stock images for team photos and contact form background photo.
+- Fontawesome - (https://fontawesome.com)
 
 ### Acknowledgements
 
@@ -394,7 +400,7 @@ By forking the GitHub Repository we make a copy of the original repository on ou
 - YouTube for JS/Python error troubleshooting.
 - ChatGPT - Data generation (e.g, list of gaming terms, list of names who added the terms, etc.)
 
-### Code snippets from external sources
+### Code inspiraton from external sources
 
 - Flask / Python main.py functions - https://youtu.be/yCYPzoG25ak?si=MKh4qADPRKqp8gCF
 - Code Institute - https://learn.codeinstitute.net/courses/
