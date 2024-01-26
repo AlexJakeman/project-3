@@ -1,0 +1,14 @@
+{
+    "type": "service_account",
+    "project_id": "gamestock-411915",
+    "private_key_id": "b50b2dc8f63d9cd2ba51ba6f32873d58db17cd27",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDHZn7nfaVPmj56\nXbjR4TZucJMnBxP3XT7rjAEcJDTikPCHi7GSVO6eZhkkTU+HGXdaMjovuJWJyOb4\nqNL21ThvREtxxl43yXszdSCicDUtOO2V/BTnlMJbaH/ugJfK4B/c9w+kDd8WgnVM\nEwfRHDK/J9d7mNx35Z7lK4qcbdBHwUBwlcMzFDNApPE0i0qn4JZ97XB73PsjEyKf\nOL6VrLTzOckkOnOVI+HT1gWVYzuRhY0n+K0OsZbEw2pVybwAdj82eixf+2dPaGCw\nf3UZcNOndn4uTdiwGMLggpBPdjM7exY7k0ykPHCWdu6V3FW1grPnBcIw3MWnRv/v\n8YopoycXAgMBAAECggEATRFuZyaG6DdjgoQK1QPIt/LGzUTNEMR3dy7Llwbfcdo3\nPQxe+4HcIFixyvgejsbm/HOBTcR396Mwslb+AuzyPP8WcckLzWAQQBk7Hc1koC/q\nlBe0NLWoURAYsiP9hyoM5qiO4QeDe/28PET2tnnBm2RYwqqYO7cCLO0hS8idwb1e\nPhOWYrViUwP0MdkLveoCXtMTC5umfSjA9czfekqa9YdXStTHA2/cbC/mECOaOMte\nTmL8mY8euK7yHKXoZr2RvC/PZRpLsexeBKAe8/ak6jYZRMwDUoxe/5F5Z2ifFe3W\nEs/HkN80EmiKeWBmB92Cbg+/TkIGkPBpmZKQh9EEwQKBgQD3ZVbJ8ZnQV7OF4Ny8\nGiRvDWmt+gTmKyX6rGOLHF40tZX12EJgFqD7uCVcransOddMBAIU2yxg5jHCur3U\nuZSd2SQN19NGhB+FowYKplmmlIP+8SST4xgIMPtuY+BYm55vJBC58E8FWcAt4vey\nmCeQB3HXSOaWCNel30tPu/m1JwKBgQDOVdWY/2Ievz2M0nd1uN9Xo7hlcFUZd8Mh\nsnScC4xXNOeh36+xvbWIyIzMj5PZ64tVzQNmVG4k8/U3geauKwckJXjE1jP3CAt4\nBKjw96xCeJv9Zot7wTi+m41t31srjXA6qWkKPK6bY46zlM6cXF17XEA9zOH8FfIV\n01Ij7V+UkQKBgQDXbwoKxTc6dITCerP9oY5Enpt+gxAtFzn1dpUgmM14fQBfm7kB\nT/NUAGGYuSoVqbDQY1UksE+O+iYu+stAKXM/mc2JuH4lE/0XNIWYVJARPZdMNNWz\nariMuYrZ8GN3Bd0Lz445PQizEhsGWnV0socRJ0p9POB/mqefrDk67+hdVQKBgFzO\n0uKcjF/UGTVMPZtf6mWbKIfH/R8VdVmk0TqXHyriiwWOfZJvCEZcHqisNA6jGesf\n6dWPSHOqn7O15DKW/AFQMYAn8Pu+TJpRTkQEwyCq608RXs/tWz6w7O5stq9iUQax\nyKNoJAmUwE0aM8y05v9jwSmLDGK85ETY5mtui71hAoGAC/TOW8px79+S7gvaeBG9\nRDF4M3fD9GNMfd/kh7v3KDAXHrJXjYtUkn+HlKAFdnbX8zWsZrG3pmlBmD3WGVqO\njMCydaR/xaEZ1DVWbgtzyIsA0oJ9hhyQeEFVpyiDTInIkMYr9MpdkmZQiRBzmLJy\nvhJi5/dB5aLCJZWJ8fM4tLo=\n-----END PRIVATE KEY-----\n",
+    "client_email": "gamestock@gamestock-411915.iam.gserviceaccount.com",
+    "client_id": "108471789688870901465",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/gamestock%40gamestock-411915.iam.gserviceaccount.com",
+    "universe_domain": "googleapis.com"
+  }
+  
