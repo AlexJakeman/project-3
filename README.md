@@ -349,6 +349,7 @@ Gamer Jargon uses the following technologies:
 - Django: [Learn more about Django](https://en.wikipedia.org/wiki/Django_(web_framework))
 - HTML: [Learn more about HTML](https://en.wikipedia.org/wiki/HTML)
 - CSS: [Learn more about CSS](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
+- Bootstrap: [Learn more about Bootstrap](https://startbootstrap.com/theme/agency)
 
 ## Frameworks, Libraries & Programs Used
 
@@ -363,6 +364,9 @@ GitHub is used to store the projects code after being pushed from Git.
 
 - Google Sheets (https://docs.google.com/spreadsheets)
 Google Sheets was integral to host the data for the webapp.
+
+- Start Bootstrap (https://startbootstrap.com/theme/agency)
+This theme assisted me with getting the UI for my page. 
 
 ## Deployment
 
