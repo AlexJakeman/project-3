@@ -412,6 +412,7 @@ Utilizing Google Drive API for data storage offers several advantages:
 - Scalability: Google Sheets provide scalable storage, accommodating datasets of varying sizes.
 - Accessibility: Data stored in Google Sheets can be easily accessed and modified by authorized users from anywhere with an internet connection.
 - Integration: Integration with Google Drive API allows seamless interaction with the dataset, enabling functionalities like adding, updating, and querying data programmatically.
+- Usability: The database is designed for ease of use and accessibility. CRUD (Create, Read, Update, Delete) operations can be performed efficiently.
 
 ## Frameworks, Libraries & Programs Used
 
