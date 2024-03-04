@@ -351,6 +351,68 @@ Gamer Jargon uses the following technologies:
 - CSS: [Learn more about CSS](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
 - Bootstrap: [Learn more about Bootstrap](https://startbootstrap.com/theme/agency)
 
+## Data Model 
+
+In this section, describe the data model designed for your project. You can include information about the entities, attributes, and relationships in your data model. Based on the example provided, your data model could look like this:
+
+### Attributes:
+
+- Word (String)
+- Context (String)
+- Meaning (String)
+- Added_by (String)
+- Date (DateTime)
+- Id (Integer)
+
+Here's an example entry in the dataset:
+
+- Word: Mod (Modification)
+- Context: Altered versions of a game created by players or developers to introduce new features or change existing ones.
+- Meaning: Customized content that modifies the original game.
+- Added_by: Luke Skywalker
+- Date: 02/07/2022 02:45:34
+- Id: 1111
+
+![Image of the Google Sheets Data Model in use](/static/assets/img/readme/data-model-example.png)
+
+### Google Sheets Implementation
+
+Guide used: [Creating a Google Sheet](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+LSND101+2021_T1/courseware/c05d81d784ad412498d09e2f3c081a9f/53fe80e254f8462884e3d526b3a95c5e/)
+
+In this guide, I was assisted by Anna Greaves (CI Content Dev) via a video that is designed to help students setup and implement a Google Sheets based database using Google's Drive API. 
+
+#### Google Drive API Integration
+
+Implementation Details:
+The project utilizes the Google Drive API for storing and managing the dataset. Here's an overview of how it's integrated:
+
+- Google Sheets as a Database:
+
+The project uses Google Sheets as a database to store the dataset.
+Each entry in the dataset corresponds to a row in a Google Sheets document.
+
+- Google Drive API Integration:
+
+The Google Drive API is used to interact with the Google Sheets document programmatically.
+API requests are made to read, write, and update data within the Google Sheets document.
+
+- Authentication and Authorization:
+
+The project implements OAuth 2.0 for authentication and authorization to access the Google Drive API securely.
+Users need to authenticate themselves with their Google accounts to access and modify the dataset.
+
+- Data Model:
+
+The data model remains consistent with the structure described earlier, but the storage medium is Google Sheets hosted on Google Drive.
+
+#### Benefits
+
+Utilizing Google Drive API for data storage offers several advantages:
+
+- Scalability: Google Sheets provide scalable storage, accommodating datasets of varying sizes.
+- Accessibility: Data stored in Google Sheets can be easily accessed and modified by authorized users from anywhere with an internet connection.
+- Integration: Integration with Google Drive API allows seamless interaction with the dataset, enabling functionalities like adding, updating, and querying data programmatically.
+
 ## Frameworks, Libraries & Programs Used
 
 - Google Fonts https://fonts.google.com/specimen/Geo
